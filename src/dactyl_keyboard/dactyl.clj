@@ -490,6 +490,14 @@
           (thumb-br-place web-post-tr)
           (key-place 0 2 web-post-bl)
           )
+      (triangle-hulls
+          (thumb-tr-place web-post-tr)
+          (thumb-tr-place web-post-br)
+          (key-place 0 2 web-post-bl))
+      (triangle-hulls
+          (thumb-tr-place web-post-tr)
+          (key-place 0 2 web-post-bl)
+          (key-place 0 2 web-post-tl))
       ))
 
 ;;;;;;;;;;
@@ -550,8 +558,14 @@
   (union
    right-wall
    ; back wall
-   (for [x (range 0 ncols)] (key-wall-brace x 0 0 1 web-post-tl x       0 0 1 web-post-tr))
-   (for [x (range 1 ncols)] (key-wall-brace x 0 0 1 web-post-tl (dec x) 0 0 1 web-post-tr))
+;   (for [x (range 0 ncols)] (key-wall-brace x 0 0 1 web-post-tl x       0 0 1 web-post-tr))
+;   (for [x (range 1 ncols)] (key-wall-brace x 0 0 1 web-post-tl (dec x) 0 0 1 web-post-tr))
+      
+   ;-tleytek front wall
+;   (for [x (range 1 ncols)] (key-wall-brace x 3 0 -1 web-post-bl x 3 0 -1 web-post-br))
+;   (for [x (range 2 ncols)] (key-wall-brace x 3 0 -1  web-post-bl (dec x) 3 0 -1 web-post-br))
+
+
 
    ; left wall
    (for [y (range 0 lastrow)] (union (wall-brace (partial left-key-place y 1)       -1 0 web-post (partial left-key-place y -1) -1 0 web-post)
@@ -565,12 +579,12 @@
                                            (left-key-place y        1 web-post)
                                            (left-key-place (dec y) -1 web-post))))
       
-   (wall-brace (partial key-place 0 0) 0 1 web-post-tl (partial left-key-place 0 1) 0 1 web-post)
-   (wall-brace (partial left-key-place 0 1) 0 1 web-post (partial left-key-place 0 1) -1 0 web-post)
+;   (wall-brace (partial key-place 0 0) 0 1 web-post-tl (partial left-key-place 0 1) 0 1 web-post)
+;   (wall-brace (partial left-key-place 0 1) 0 1 web-post (partial left-key-place 0 1) -1 0 web-post)
    ; front wall
-   (key-wall-brace 3 lastrow   0 -1 web-post-bl 3 lastrow 0 -1 web-post-br)
+;   (key-wall-brace 3 lastrow   0 -1 web-post-bl 3 lastrow 0 -1 web-post-br)
 ;   (key-wall-brace 3 lastrow   0 -1 web-post-br 4 lastrow)
-   (key-wall-brace 3 lastrow 0 -1 web-post-br 4 lastrow 0 -1 web-post-bl)
+;   (key-wall-brace 3 lastrow 0 -1 web-post-br 4 lastrow 0 -1 web-post-bl)
 ;   (for [x (range 4 ncols)] (key-wall-brace x cornerrow 0 -1 web-post-bl x       cornerrow 0 -1 web-post-br)) ; TODO fix extra wall
 ;   (for [x (range 5 ncols)] (key-wall-brace x cornerrow 0 -1 web-post-bl (dec x) cornerrow 0 -1 web-post-br))
       
@@ -586,10 +600,11 @@
    ; thumb corners
    (wall-brace thumb-tl-place 0  1 web-post-tl thumb-tl-place  -1 0 web-post-tl)
    (wall-brace thumb-bl-place -1  0 web-post-bl thumb-bl-place  0  -1 web-post-bl)
-      (wall-brace thumb-tr-place 0 1 web-post-tr thumb-tr-place 0.25 0 web-post-tr)
-   ; thumb tweeners
-   (wall-brace thumb-mr-place  0 -1 web-post-bl thumb-br-place  0 -1 web-post-br)
-   (wall-brace thumb-br-place  0 -1 thumb-post-br (partial key-place 3 lastrow)  0 -1 web-post-bl)
+;   (wall-brace thumb-tr-place 0 1 web-post-tr thumb-tr-place 1 0 web-post-tr)
+   ; thumb tweeners      
+   (wall-brace thumb-br-place  0 -1 web-post-br (partial key-place 3 lastrow)  0 -1 web-post-bl)
+      
+   (wall-brace thumb-tr-place 0 1 web-post-tr (partial key-place 0 2) 0 1 web-post-tl)
     
       
       
