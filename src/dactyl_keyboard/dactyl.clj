@@ -285,7 +285,7 @@
          (concat
           ;; Row connections
           (for [column (range 0 (dec ncols))
-                row (range 0 lastrow)]
+                row (range 0 3)]
             (triangle-hulls
              (key-place (inc column) row web-post-tl)
              (key-place column row web-post-tr)
@@ -294,7 +294,7 @@
 
           ;; Column connections
           (for [column columns
-                row (range 0 cornerrow)]
+                row (range 0 3)]
             (triangle-hulls
              (key-place column row web-post-bl)
              (key-place column row web-post-br)
@@ -303,7 +303,7 @@
 
           ;; Diagonal connections
           (for [column (range 0 (dec ncols))
-                row (range 0 cornerrow)]
+                row (range 0 3)]
             (triangle-hulls
              (key-place column row web-post-br)
              (key-place column (inc row) web-post-tr)
@@ -558,12 +558,12 @@
   (union
    right-wall
    ; back wall
-;   (for [x (range 0 ncols)] (key-wall-brace x 0 0 1 web-post-tl x       0 0 1 web-post-tr))
-;   (for [x (range 1 ncols)] (key-wall-brace x 0 0 1 web-post-tl (dec x) 0 0 1 web-post-tr))
+   (for [x (range 0 ncols)] (key-wall-brace x 0 0 1 web-post-tl x       0 0 1 web-post-tr))
+   (for [x (range 1 ncols)] (key-wall-brace x 0 0 1 web-post-tl (dec x) 0 0 1 web-post-tr))
       
    ;-tleytek front wall
-;   (for [x (range 1 ncols)] (key-wall-brace x 3 0 -1 web-post-bl x 3 0 -1 web-post-br))
-;   (for [x (range 2 ncols)] (key-wall-brace x 3 0 -1  web-post-bl (dec x) 3 0 -1 web-post-br))
+   (for [x (range 1 ncols)] (key-wall-brace x 3 0 -1 web-post-bl x 3 0 -1 web-post-br))
+   (for [x (range 2 ncols)] (key-wall-brace x 3 0 -1  web-post-bl (dec x) 3 0 -1 web-post-br))
 
 
 
@@ -602,7 +602,7 @@
    (wall-brace thumb-bl-place -1  0 web-post-bl thumb-bl-place  0  -1 web-post-bl)
 ;   (wall-brace thumb-tr-place 0 1 web-post-tr thumb-tr-place 1 0 web-post-tr)
    ; thumb tweeners      
-   (wall-brace thumb-br-place  0 -1 web-post-br (partial key-place 3 lastrow)  0 -1 web-post-bl)
+;   (wall-brace thumb-br-place  0 -1 web-post-br (partial key-place 3 lastrow)  0 -1 web-post-bl)
       
    (wall-brace thumb-tr-place 0 1 web-post-tr (partial key-place 0 2) 0 1 web-post-tl)
     

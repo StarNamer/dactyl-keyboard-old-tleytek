@@ -1,8 +1,23 @@
 # Dactyl Keyboard
 
-This is a fork of the [Dactyl-Manuform-Mini](https://github.com/l4u/dactyl-manuform-mini-keyboard)This is a fork of the [Dactyl-ManuForm](https://github.com/tshort/dactyl-keyboard). The Dactyl-Manuform is a fork of the [Dactyl](https://github.com/adereth/dactyl-keyboard) with the thumb cluster from [ManuForm](https://github.com/jeffgran/ManuForm).
+This is a fork of the [Dactyl-Manuform-Mini](https://github.com/l4u/dactyl-manuform-mini-keyboard). The Dactyl-ManuForm-Mini is a fork of the [Dactyl-Manuform](https://github.com/tshort/dactyl-keyboard). The Dactyl-Manuform is a fork of the [Dactyl](https://github.com/adereth/dactyl-keyboard) with the thumb cluster from [ManuForm](https://github.com/jeffgran/ManuForm).
 
-## Features
+I don't know if I am doing this fork stuff right haha.
+
+## TODO
+
+- Make the 4 x 5, 4 x 6, etc, for people who want to try this. 
+- Fix the thumb cluster wall breaking into the case where the Pro-Micro would go.
+- change 2 thumb keys to be 2u and add another 1u thumb key
+- Move the audio jack and usb breakout section to fit different kinds of inputs?
+
+## Info/The Why
+
+So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. The problems I had with the manuform variants were the thumb cluster locations anything other than the top 3 thumb keys were very uncomfortable to press. So I built a Dactyl and loved the thumb cluster placement alot more, but the finger columns were not inline with my fingers, so my fingers weren't sitting on my home row keys when neutral like they were on the manuform variants. Modifiying the column placements were really hard for me on the Dactyl because the case would break, leaving holes and weird artifacts. As someone with no clojure experience, the dactyl-manuform was much easier to understand and modify than the Dactyl. So I tried to make the dactyl-manuform into a dactyl by imitating the thumb cluster and adding 2 more bottom row keys. What I like about the dactyl variant I am making is that its somewhat closer to the ground and it still has tshorts easy to use column adjustments that won't break the case.
+
+Yet the clojure code was so much easier to modify. I have no experience with clojure other than with these keyboard forks, and I had a lot easier of a time reading and understanding tshorts
+
+## [l4u](https://github.com/l4u/dactyl-manuform-mini-keyboard) Features
 
 - The use of sidenubs can be disabled. Sidenub should be disabled if you use Kailh, and Outemu. If you use Cherry MX, Gateron or Zealios switches, you can enable the sidenubs.
 - Spaces for rentention tabs are added.
@@ -26,11 +41,6 @@ This is a fork of the [Dactyl-Manuform-Mini](https://github.com/l4u/dactyl-manuf
 
 ### Option 2: Download from Thingiverse
 
-[Dactyl ManuForm Mini on Thingiverse](https://www.thingiverse.com/l4u/collections/dactyl-manuform-mini)
-
-### Option 3: Order from Shapeways
-
-[Order from Shapeways](https://www.shapeways.com/shops/l4u)
 
 ## License
 
