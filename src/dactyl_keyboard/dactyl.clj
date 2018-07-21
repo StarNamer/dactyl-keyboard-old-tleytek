@@ -233,7 +233,7 @@
   (apply union
          (for [column columns
                row rows
-               :when (or (.contains [1 2 3 4] column)
+               :when (or (.contains [1 2 3 4 5] column)
                          (not= row lastrow))]
            (->> single-plate
                 (key-place column row)))))
@@ -242,7 +242,7 @@
   (apply union
          (for [column columns
                row rows
-               :when (or (.contains [1 2 3 4] column)
+               :when (or (.contains [1 2 3 4 5] column)
                          (not= row lastrow))]
            (->> (sa-cap (if (and (true? pinky-15u) (= column lastcol)) 1.5 1))
                 (key-place column row)))))
@@ -392,6 +392,8 @@
 (def thumb-post-bl (translate [(+ (/ mount-width -2) post-adj) (+ (/ mount-height -2) post-adj) 0] web-post))
 (def thumb-post-br (translate [(- (/ mount-width 2) post-adj)  (+ (/ mount-height -2) post-adj) 0] web-post))
 
+
+;I have more than thumb connectors in this function? object?
 (def thumb-connectors
   (union
    (triangle-hulls    ;top right to top left
@@ -410,46 +412,20 @@
     (thumb-bl-place web-post-tr)
     (thumb-bl-place web-post-br)
     (thumb-mr-place thumb-post-tl)
-    (thumb-mr-place thumb-post-bl)
-       )
-   (triangle-hulls 
+    (thumb-mr-place thumb-post-bl))
+      
+   (triangle-hulls ;bottom thumb row, middle key to right key connection
     (thumb-mr-place web-post-tr)
     (thumb-mr-place web-post-br)
     (thumb-br-place web-post-tl)
-    (thumb-br-place web-post-bl)
-       )
-   (triangle-hulls    ; top two to the middle two, starting on the left
-;    (thumb-tl-place web-post-tl)
-;    (thumb-bl-place web-post-tr)
-;    (thumb-tl-place web-post-bl)
-;    (thumb-bl-place web-post-br)
-;    (thumb-mr-place web-post-tr)
-;    (thumb-tl-place web-post-bl)
-;    (thumb-tl-place web-post-br)
-;    (thumb-mr-place web-post-tr)
-       )
-   (triangle-hulls    ; top two to the main keyboard, starting on the left
-;    (thumb-tl-place web-post-tl)
-;    (key-place 0 cornerrow web-post-bl)
-;    (thumb-tl-place web-post-tr)
-;    (key-place 0 cornerrow web-post-br)
-;    (thumb-tr-place thumb-post-tl)
-;    (key-place 1 cornerrow web-post-bl)
-;    (thumb-tr-place thumb-post-tr)
-;    (key-place 1 cornerrow web-post-br)
-;    (key-place 2 lastrow web-post-tl)
-    (key-place 2 lastrow web-post-bl)
-    (key-place 2 lastrow web-post-bl)
-    (key-place 2 lastrow web-post-br)
-    (key-place 3 lastrow web-post-bl)
-    (key-place 2 lastrow web-post-tr)
-    (key-place 3 lastrow web-post-tl)
-    (key-place 3 cornerrow web-post-bl)
-    (key-place 3 lastrow web-post-tr)
-    (key-place 3 cornerrow web-post-br)
-    (key-place 4 cornerrow web-post-bl)
-;    (key-place 4 lastrow web-post-tl)
-       )
+    (thumb-br-place web-post-bl))
+
+;   (triangle-hulls
+;    (key-place 2 3 web-post-br)
+;    (key-place 2 3 web-post-tr)
+;    (key-place 3 3 web-post-bl)
+;    (key-place 3 3 web-post-tl))
+      
    (triangle-hulls
     (key-place 1 cornerrow web-post-br)
     (key-place 2 lastrow web-post-tl)
@@ -458,11 +434,11 @@
     (key-place 2 cornerrow web-post-br)
     (key-place 3 cornerrow web-post-bl))
       
-   (triangle-hulls
-    (key-place 3 lastrow web-post-tr)
-    (key-place 3 lastrow web-post-br)
-    (key-place 3 lastrow web-post-tr)
-    (key-place 4 cornerrow web-post-bl))
+;   (triangle-hulls
+;    (key-place 3 lastrow web-post-tr)
+;    (key-place 3 lastrow web-post-br)
+;    (key-place 3 lastrow web-post-tr)
+;    (key-place 4 cornerrow web-post-bl))
       
    (triangle-hulls
     (key-place 4 2 web-post-bl)
@@ -484,17 +460,15 @@
        (thumb-tr-place web-post-br)
        (thumb-br-place web-post-tl)
        (key-place 0 2 web-post-bl))
-      
-      (triangle-hulls
+    (triangle-hulls
           (thumb-br-place web-post-tl)
           (thumb-br-place web-post-tr)
-          (key-place 0 2 web-post-bl)
-          )
-      (triangle-hulls
+          (key-place 0 2 web-post-bl))
+    (triangle-hulls
           (thumb-tr-place web-post-tr)
           (thumb-tr-place web-post-br)
           (key-place 0 2 web-post-bl))
-      (triangle-hulls
+    (triangle-hulls
           (thumb-tr-place web-post-tr)
           (key-place 0 2 web-post-bl)
           (key-place 0 2 web-post-tl))
