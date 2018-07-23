@@ -13,7 +13,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 (def nrows 4)
-(def ncols 5)
+(def ncols 6)
 
 (def α (/ π 12))                        ; curvature of the columns
 (def β (/ π 36))                        ; curvature of the rows
@@ -285,7 +285,15 @@
          (concat
           ;; Row connections
           (for [column (range 0 (dec ncols))
-                row (range 0 3)]
+                row (range 0 lastrow)]
+            (triangle-hulls
+             (key-place (inc column) row web-post-tl)
+             (key-place column row web-post-tr)
+             (key-place (inc column) row web-post-bl)
+             (key-place column row web-post-br)))
+             
+             (for [column (range 1 (dec ncols))
+                row (range 0 nrows)]
             (triangle-hulls
              (key-place (inc column) row web-post-tl)
              (key-place column row web-post-tr)
@@ -293,22 +301,48 @@
              (key-place column row web-post-br)))
 
           ;; Column connections
-          (for [column columns
-                row (range 0 3)]
+          (for [column (range 1 ncols)
+                row (range 0 lastrow)]
             (triangle-hulls
              (key-place column row web-post-bl)
              (key-place column row web-post-br)
              (key-place column (inc row) web-post-tl)
              (key-place column (inc row) web-post-tr)))
+             
+          (for [column (range 0 (dec ncols))
+                row (range 0 (dec lastrow))]
+            (triangle-hulls
+             (key-place column row web-post-bl)
+             (key-place column row web-post-br)
+             (key-place column (inc row) web-post-tl)
+             (key-place column (inc row) web-post-tr)))
+             
+;          ;; Column connections
+;          (for [column columns
+;                row (range 3 4)]
+;            (triangle-hulls
+;             (key-place column row web-post-bl)
+;             (key-place column row web-post-br)
+;             (key-place column (inc row) web-post-tl)
+;             (key-place column (inc row) web-post-tr)))
 
           ;; Diagonal connections
           (for [column (range 0 (dec ncols))
-                row (range 0 3)]
+                row (range 0 cornerrow)]
             (triangle-hulls
              (key-place column row web-post-br)
              (key-place column (inc row) web-post-tr)
              (key-place (inc column) row web-post-bl)
-             (key-place (inc column) (inc row) web-post-tl))))))
+             (key-place (inc column) (inc row) web-post-tl)))
+             
+          (for [column (range 1 (dec ncols))
+                row (range 0 lastrow)]
+            (triangle-hulls
+             (key-place column row web-post-br)
+             (key-place column (inc row) web-post-tr)
+             (key-place (inc column) row web-post-bl)
+             (key-place (inc column) (inc row) web-post-tl)))
+             )))
 
 ;;;;;;;;;;;;
 ;; Thumbs ;;
@@ -418,60 +452,50 @@
     (thumb-mr-place web-post-tr)
     (thumb-mr-place web-post-br)
     (thumb-br-place web-post-tl)
-    (thumb-br-place web-post-bl))
-
-;   (triangle-hulls
-;    (key-place 2 3 web-post-br)
-;    (key-place 2 3 web-post-tr)
-;    (key-place 3 3 web-post-bl)
-;    (key-place 3 3 web-post-tl))
+    (thumb-br-place web-post-bl)) 
       
+      
+;thumb connections to corner index finger keys
    (triangle-hulls
-    (key-place 1 cornerrow web-post-br)
-    (key-place 2 lastrow web-post-tl)
-    (key-place 2 cornerrow web-post-bl)
-    (key-place 2 lastrow web-post-tr)
-    (key-place 2 cornerrow web-post-br)
-    (key-place 3 cornerrow web-post-bl))
-      
-;   (triangle-hulls
-;    (key-place 3 lastrow web-post-tr)
-;    (key-place 3 lastrow web-post-br)
-;    (key-place 3 lastrow web-post-tr)
-;    (key-place 4 cornerrow web-post-bl))
-      
+    (thumb-br-place web-post-tr)
+    (key-place 1 cornerrow web-post-bl)
+    (key-place 1 lastrow web-post-tl))
    (triangle-hulls
-    (key-place 4 2 web-post-bl)
-    (key-place 4 2 web-post-br)
-    (key-place 4 3 web-post-tl)
-    (key-place 4 3 web-post-tr))
-      
+    (thumb-br-place web-post-tr)
+    (key-place 1 lastrow web-post-bl)
+    (key-place 1 lastrow web-post-tl))
    (triangle-hulls
-    (key-place 4 2 web-post-bl)
-    (key-place 3 3 web-post-br)
-    (key-place 4 3 web-post-bl))
-      
+    (thumb-br-place web-post-tr)
+    (key-place 0 cornerrow web-post-br)
+    (key-place 1 cornerrow web-post-bl))
    (triangle-hulls
-       (thumb-tr-place web-post-br)
-       (thumb-mr-place web-post-tr)
-       (thumb-br-place web-post-tl))
-      
+    (thumb-br-place web-post-br)
+    (key-place 1 lastrow web-post-bl)
+    (thumb-br-place web-post-tr))
    (triangle-hulls
-       (thumb-tr-place web-post-br)
-       (thumb-br-place web-post-tl)
-       (key-place 0 2 web-post-bl))
-    (triangle-hulls
-          (thumb-br-place web-post-tl)
-          (thumb-br-place web-post-tr)
-          (key-place 0 2 web-post-bl))
-    (triangle-hulls
-          (thumb-tr-place web-post-tr)
-          (thumb-tr-place web-post-br)
-          (key-place 0 2 web-post-bl))
-    (triangle-hulls
-          (thumb-tr-place web-post-tr)
-          (key-place 0 2 web-post-bl)
-          (key-place 0 2 web-post-tl))
+    (thumb-br-place web-post-tr)
+    (key-place 0 cornerrow web-post-bl)
+    (key-place 0 cornerrow web-post-br))   
+   (triangle-hulls
+    (thumb-tr-place web-post-br)
+    (thumb-mr-place web-post-tr)
+    (thumb-br-place web-post-tl))
+   (triangle-hulls
+    (thumb-tr-place web-post-br)
+    (thumb-br-place web-post-tl)
+    (key-place 0 cornerrow web-post-bl))
+   (triangle-hulls
+    (thumb-br-place web-post-tl)
+    (thumb-br-place web-post-tr)
+    (key-place 0 cornerrow web-post-bl))
+   (triangle-hulls
+    (thumb-tr-place web-post-tr)
+    (thumb-tr-place web-post-br)
+    (key-place 0 cornerrow web-post-bl))
+   (triangle-hulls
+    (thumb-tr-place web-post-tr)
+    (key-place 0 cornerrow web-post-bl)
+    (key-place 0 cornerrow web-post-tl))
       ))
 
 ;;;;;;;;;;
@@ -524,9 +548,10 @@
   (let [tr (if (true? pinky-15u) wide-post-tr web-post-tr)
         br (if (true? pinky-15u) wide-post-br web-post-br)]
     (union (key-wall-brace lastcol 0 0 1 tr lastcol 0 1 0 tr)
-           (for [y (range 0 lastrow)] (key-wall-brace lastcol y 1 0 tr lastcol y 1 0 br))
-           (for [y (range 1 lastrow)] (key-wall-brace lastcol (dec y) 1 0 br lastcol y 1 0 tr))
-           (key-wall-brace lastcol cornerrow 0 -1 br lastcol cornerrow 1 0 br))))
+           (for [y (range 0 nrows)] (key-wall-brace lastcol y 1 0 tr lastcol y 1 0 br))
+           (for [y (range 1 nrows)] (key-wall-brace lastcol (dec y) 1 0 br lastcol y 1 0 tr))
+           (key-wall-brace lastcol lastrow 0 -1 br lastcol lastrow 1 0 br)
+           )))
 
 (def case-walls
   (union
@@ -534,10 +559,12 @@
    ; back wall
    (for [x (range 0 ncols)] (key-wall-brace x 0 0 1 web-post-tl x       0 0 1 web-post-tr))
    (for [x (range 1 ncols)] (key-wall-brace x 0 0 1 web-post-tl (dec x) 0 0 1 web-post-tr))
-      
+;      (key-wall-brace lastcol 0 0 1 web-post-tr lastcol 0 1 0 web-post-tr)
    ;-tleytek front wall
-   (for [x (range 1 ncols)] (key-wall-brace x 3 0 -1 web-post-bl x 3 0 -1 web-post-br))
-   (for [x (range 2 ncols)] (key-wall-brace x 3 0 -1  web-post-bl (dec x) 3 0 -1 web-post-br))
+   (for [x (range 1 ncols)] (key-wall-brace x lastrow 0 -1 web-post-bl x        lastrow 0 -1 web-post-br))
+   (for [x (range 2 ncols)] (key-wall-brace x lastrow 0 -1  web-post-bl (dec x) lastrow 0 -1 web-post-br))
+;         (for [x (range 4 ncols)] (key-wall-brace x cornerrow 0 -1 web-post-bl x       cornerrow 0 -1 web-post-br))
+;   (for [x (range 5 ncols)] (key-wall-brace x cornerrow 0 -1 web-post-bl (dec x) cornerrow 0 -1 web-post-br))
 
 
 
@@ -553,8 +580,8 @@
                                            (left-key-place y        1 web-post)
                                            (left-key-place (dec y) -1 web-post))))
       
-;   (wall-brace (partial key-place 0 0) 0 1 web-post-tl (partial left-key-place 0 1) 0 1 web-post)
-;   (wall-brace (partial left-key-place 0 1) 0 1 web-post (partial left-key-place 0 1) -1 0 web-post)
+   (wall-brace (partial key-place 0 0) 0 1 web-post-tl (partial left-key-place 0 1) 0 1 web-post)
+   (wall-brace (partial left-key-place 0 1) 0 1 web-post (partial left-key-place 0 1) -1 0 web-post)
    ; front wall
 ;   (key-wall-brace 3 lastrow   0 -1 web-post-bl 3 lastrow 0 -1 web-post-br)
 ;   (key-wall-brace 3 lastrow   0 -1 web-post-br 4 lastrow)
@@ -569,6 +596,9 @@
    (wall-brace thumb-tl-place -1  0 web-post-bl thumb-bl-place -1  0 web-post-tl)
    (wall-brace thumb-bl-place -1  0 web-post-tl thumb-bl-place -1  0 web-post-bl)
    (wall-brace thumb-bl-place 0  -1 web-post-bl thumb-br-place 0  -1 web-post-br)
+   (wall-brace thumb-br-place 0  -1 web-post-br (partial key-place 1 lastrow) 0  -1 web-post-bl)
+
+      
 
 
    ; thumb corners
@@ -578,7 +608,7 @@
    ; thumb tweeners      
 ;   (wall-brace thumb-br-place  0 -1 web-post-br (partial key-place 3 lastrow)  0 -1 web-post-bl)
       
-   (wall-brace thumb-tr-place 0 1 web-post-tr (partial key-place 0 2) 0 1 web-post-tl)
+   (wall-brace thumb-tr-place 0 1 web-post-tr (partial key-place 0 cornerrow) 0 1 web-post-tl)
     
       
       
@@ -642,9 +672,9 @@
         (translate [(first pro-micro-position) (second pro-micro-position) (last pro-micro-position)]))
    pro-micro-space))
 
-(def trrs-holder-size [6.2 10 2]) ; trrs jack PJ-320A
-(def trrs-holder-hole-size [6.2 10 6]) ; trrs jack PJ-320A
-(def trrs-holder-position  (map + usb-holder-position [-13.6 0 0]))
+(def trrs-holder-size [5.9 10 2]) ; trrs jack PJ-320A
+(def trrs-holder-hole-size [10 11 6]) ; trrs jack PJ-320A
+(def trrs-holder-position  (map + usb-holder-position [-15 2.355 0]))
 (def trrs-holder-thickness 2)
 (def trrs-holder-thickness-2x (* 2 trrs-holder-thickness))
 (def trrs-holder
@@ -656,7 +686,7 @@
 
   ; circle trrs hole
    (->>
-    (->> (binding [*fn* 30] (cylinder 2.55 20))) ; 5mm trrs jack
+    (->> (binding [*fn* 30] (cylinder 2.7 20))) ; 5mm trrs jack
     (rotate (deg2rad  90) [1 0 0])
     (translate [(first trrs-holder-position) (+ (second trrs-holder-position) (/ (+ (second trrs-holder-size) trrs-holder-thickness) 2)) (+ 3 (/ (+ (last trrs-holder-size) trrs-holder-thickness) 2))])) ;1.5 padding
 
@@ -683,13 +713,14 @@
 
 (defn screw-insert-all-shapes [bottom-radius top-radius height]
   (union 
-      (screw-insert 0 0         bottom-radius top-radius height [11 10 0])
-         (screw-insert 0 lastrow   bottom-radius top-radius height [0.5 7 0])
+      (screw-insert 0 0         bottom-radius top-radius height [8 10 0])
+         (screw-insert 0 lastrow   bottom-radius top-radius height [-37 20 0])
+      
         ;  (screw-insert lastcol lastrow  bottom-radius top-radius height [-5 13 0])
         ;  (screw-insert lastcol 0         bottom-radius top-radius height [-3 6 0])
-         (screw-insert lastcol lastrow  bottom-radius top-radius height [-5 12 0])
+         (screw-insert lastcol lastrow  bottom-radius top-radius height [-5 -7 0])
          (screw-insert lastcol 0         bottom-radius top-radius height [-4 7 0])
-         (screw-insert 1 lastrow         bottom-radius top-radius height [0 -14 0])
+         (screw-insert 0 lastrow         bottom-radius top-radius height [-29 -21 0])
       ))
 
 ; Hole Depth Y: 4.4

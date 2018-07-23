@@ -6,16 +6,15 @@ I don't know if I am doing this fork stuff right haha.
 
 ## TODO
 
-- Make the 4 x 5, 4 x 6, etc, for people who want to try this. 
-- Fix the thumb cluster wall breaking into the case where the Pro-Micro would go.
-- change 2 thumb keys to be 2u and add another 1u thumb key
-- Move the audio jack and usb breakout section to fit different kinds of inputs?
+- Make the 4 x 5, 4 x 6, etc, for people who want to try this. (Done)
+- Move the audio jack and usb breakout section to fit different kinds of inputs? (Done, usb micro was already workable with most connections. TRRS jack wall was thinned and space was widened for CP-43514-ND)
+- Clean up all the commented out code
+- Fix the thumb cluster wall breaking into the case where the Pro-Micro would go. (Might just dremel this off once I get my first print lol)
+- Change 2 thumb keys to be 2u and add another 1u thumb key so that it is more like dactyl/kinesis
 
 ## Info/The Why
 
-So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. The problems I had with the manuform variants were the thumb cluster locations anything other than the top 3 thumb keys were very uncomfortable to press. So I built a Dactyl and loved the thumb cluster placement alot more, but the finger columns were not inline with my fingers, so my fingers weren't sitting on my home row keys when neutral like they were on the manuform variants. Modifiying the column placements were really hard for me on the Dactyl because the case would break, leaving holes and weird artifacts. As someone with no clojure experience, the dactyl-manuform was much easier to understand and modify than the Dactyl. So I tried to make the dactyl-manuform into a dactyl by imitating the thumb cluster and adding 2 more bottom row keys. What I like about the dactyl variant I am making is that its somewhat closer to the ground and it still has tshorts easy to use column adjustments that won't break the case.
-
-Yet the clojure code was so much easier to modify. I have no experience with clojure other than with these keyboard forks, and I had a lot easier of a time reading and understanding tshorts
+So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. The problems I had with the manuform variants were the thumb cluster locations anything other than the top 3 thumb keys were very uncomfortable to press. So I built a Dactyl and loved the thumb cluster placement alot more, but the finger columns were not inline with my fingers, so my fingers weren't sitting on my home row keys when neutral like they were on the manuform variants. Modifiying the column placements were really hard for me on the Dactyl because the case would break, leaving holes and weird artifacts. As someone with no clojure experience, the dactyl-manuform was much easier to understand and modify than the Dactyl. So I tried to make the dactyl-manuform into a dactyl by imitating the thumb cluster and adding 2 more bottom row keys. What I like about the dactyl-manuform variant l4u made is that its closer to the ground and it still has tshorts easy to use column adjustments that won't break the case like the original dactyls code.
 
 ## [l4u](https://github.com/l4u/dactyl-manuform-mini-keyboard) Features
 
@@ -32,7 +31,7 @@ Yet the clojure code was so much easier to modify. I have no experience with clo
 ## Getting the case and bottom plate
 
 ### Option 1: Generate OpenSCAD and STL models
-
+* Navigate to the dactyl-keyboard folder in CMD
 * Run `lein generate` or `lein auto generate`
 * This will regenerate the `things/*.scad` files
 * Use OpenSCAD to open a `.scad` file.
