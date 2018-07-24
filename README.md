@@ -4,7 +4,7 @@ This is a fork of the [Dactyl-Manuform-Mini](https://github.com/l4u/dactyl-manuf
 
 I don't know if I am doing this fork stuff right haha.
 
-![Dactyl variant](guide/Mint-dactyl.png)
+![Dactyl variant](guide/Mint-dactyl.PNG)
 
 ## TODO
 
