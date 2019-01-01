@@ -2,23 +2,15 @@
 
 This is a fork of the [Dactyl-Manuform-Mini](https://github.com/l4u/dactyl-manuform-mini-keyboard). The Dactyl-ManuForm-Mini is a fork of the [Dactyl-Manuform](https://github.com/tshort/dactyl-keyboard). The Dactyl-Manuform is a fork of the [Dactyl](https://github.com/adereth/dactyl-keyboard) with the thumb cluster from [ManuForm](https://github.com/jeffgran/ManuForm).
 
-I don't know if I am doing this fork stuff right haha.
+I want to give credit to where it is due but it became tricky when [l4u](https://github.com/l4u) created a copy without forking, not a fault of his or anyone's, it just made the task of crediting original authored code through githubs fork system a bit tricky.
 
 ![Dactyl variant](guide/Mint-dactyl.PNG)
 
-## TODO
-
-- Make the 4 x 5, 4 x 6, etc, for people who want to try this. (Done)
-- Move the audio jack and usb breakout section to fit different kinds of inputs? (Done, usb micro was already workable with most connections. TRRS jack wall was thinned and space was widened for CP-43514-ND)
-- Clean up all the commented out code
-- Fix the thumb cluster wall breaking into the case where the Pro-Micro would go. (Might just dremel this off once I get my first print lol)
-- Change 2 thumb keys to be 2u and add another 1u thumb key so that it is more like dactyl/kinesis
-
 ## Info/The Why
 
-So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. The problems I had with the manuform variants were the thumb cluster locations anything other than the top 3 thumb keys were very uncomfortable to press. So I built a Dactyl and loved the thumb cluster placement alot more, but the finger columns were not inline with my fingers, so my fingers weren't sitting on my home row keys when neutral like they were on the manuform variants. Modifiying the column placements were really hard for me on the Dactyl because the case would break, leaving holes and weird artifacts. As someone with no clojure experience, the dactyl-manuform was much easier to understand and modify than the Dactyl. So I tried to make the dactyl-manuform into a dactyl by imitating the thumb cluster and adding 2 more bottom row keys. What I like about the dactyl-manuform variant l4u made is that its closer to the ground and it still has tshorts easy to use column adjustments that won't break the case like the original dactyls code.
+So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. The problems I had with the manuform variants were the thumb cluster locations. The manuform had a downward/convex curve to its thumb cluster, where as the dactyl is a concave thumb cluster curve. So I built a Dactyl and loved the thumb cluster placement alot more, but the finger columns were not inline with my fingers, so my fingers weren't sitting on my home row keys when neutral like they were on the manuform variants. Modifiying the column placements were really hard for me on the Dactyl because the case would break, leaving holes and weird artifacts. As someone with no clojure experience, the dactyl-manuform was much easier to understand and modify than the Dactyl. So I tried to make the dactyl-manuform into a dactyl by taking the thumb cluster from [Matt Adereth's](https://github.com/adereth/) source code. What I like about the dactyl-manuform variant l4u made is that its closer to the ground, has better I/O made, and it still has tshorts easy to use column adjustments that won't break the case like the original dactyls code. Since I haven't got around to wiring up a dactyl, I have been using the next closest thing, or I should say the origin, the kinesis advantage with the stapelberg mod for added qmk functionality.
 
-## [l4u](https://github.com/l4u/dactyl-manuform-mini-keyboard) Features
+## Features created by [l4u](https://github.com/l4u/dactyl-manuform-mini-keyboard)
 
 - The use of sidenubs can be disabled. Sidenub should be disabled if you use Kailh, and Outemu. If you use Cherry MX, Gateron or Zealios switches, you can enable the sidenubs.
 - Spaces for rentention tabs are added.
@@ -33,15 +25,15 @@ So I built a dactyl manuform and dactyl-manuform mini before I built a Dactyl. T
 ## Getting the case and bottom plate
 
 ### Option 1: Generate OpenSCAD and STL models
-* Navigate to the dactyl-keyboard folder in CMD
-* Run `lein generate` or `lein auto generate`
-* This will regenerate the `things/*.scad` files
-* Use OpenSCAD to open a `.scad` file.
-* Make changes to design, repeat `load-file`, OpenSCAD will watch for changes and rerender.
-* When done, use OpenSCAD to export STL files
+
+- Navigate to the dactyl-keyboard folder in CMD
+- Run `lein generate` or `lein auto generate`
+- This will regenerate the `things/*.scad` files
+- Use OpenSCAD to open a `.scad` file.
+- Make changes to design, repeat `load-file`, OpenSCAD will watch for changes and rerender.
+- When done, use OpenSCAD to export STL files
 
 ### Option 2: Download from Thingiverse
-
 
 ## License
 

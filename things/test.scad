@@ -1,17 +1,17 @@
 difference () {
   union () {
-    translate ([-39.80658416442557, 29.802167776611448, 2]) {
-      cube ([9.9, 12, 4], center=true);
+    translate ([-38.608329372147814, 29.82407851819672, 2]) {
+      cube ([10.2, 12, 4], center=true);
     }
   }
   union () {
-    translate ([-39.80658416442557, 35.80216777661145, 5]) {
+    translate ([-38.608329372147814, 35.82407851819672, 5]) {
       rotate (a=90.0, v=[1, 0, 0]) {
-        cylinder ($fn=30, h=20, r=3, center=true);
+        cylinder ($fn=30, h=20, r=2.55, center=true);
       }
     }
-    translate ([-39.80658416442557, 28.802167776611448, 11/2]) {
-      cube ([11, 11, 7], center=true);
+    translate ([-38.608329372147814, 28.82407851819672, 5]) {
+      cube ([6.2, 10, 6], center=true);
     }
   }
 }
