@@ -604,11 +604,13 @@
 
 (def usb-holder-ref (key-position 0 0 (map - (wall-locate2  0  -1) [0 (/ mount-height 2) 0])))
 
-(def usb-holder-position (map + [17 19.3 0] [(first usb-holder-ref) (second usb-holder-ref) 2]))
-(def usb-holder-cube   (cube 22 17 2))
-(def usb-holder-cube2   (cube 19 17 3))
-(def usb-holder-space  (translate (map + usb-holder-position [0 (* -1 wall-thickness) 1]) usb-holder-cube usb-holder-cube2))
-(def usb-holder-holder (translate usb-holder-position (cube 25 12 5)))
+(def usb-holder-position (map + [17 19.3 -1] [(first usb-holder-ref) (second usb-holder-ref) 2]))
+(def usb-holder-position2 (map + [17 19.3 0] [(first usb-holder-ref) (second usb-holder-ref) 2]))
+(def usb-holder-cube   (cube 19.5 20.8 1.5))
+(def usb-holder-cube2   (cube 18 20.8 3))
+(def usb-holder-space  (translate (map + usb-holder-position [0 (* -1 wall-thickness) 1]) usb-holder-cube))
+(def usb-holder-space2  (translate (map + usb-holder-position2 [0 (* -1 wall-thickness) 1]) usb-holder-cube2))
+(def usb-holder-holder (translate usb-holder-position (cube 22 12 4)))
 
 (def usb-jack (translate (map + usb-holder-position [0 10 3]) (cube 8.1 20 3.1)))
 
@@ -625,8 +627,8 @@
         (translate [(first pro-micro-position) (second pro-micro-position) (last pro-micro-position)]))
    pro-micro-space))
 
-(def trrs-holder-size [10 11 2]) ; trrs jack PJ-320A
-(def trrs-holder-hole-size [10 12 6]) ; trrs jack PJ-320A
+(def trrs-holder-size [11 11 7]) ; trrs jack PJ-320A
+(def trrs-holder-hole-size [11.5 13.1 7]) ; trrs jack PJ-320A
 (def trrs-holder-position  (map + usb-holder-position [-50 -49 0]))
 (def trrs-holder-thickness 2)
 (def trrs-holder-thickness-2x (* 2 trrs-holder-thickness))
@@ -642,7 +644,7 @@
   (union
   ; circle trrs hole
    (->>
-    (->> (binding [*fn* 30] (cylinder 2.55 20))) ; 5mm trrs jack
+    (->> (binding [*fn* 30] (cylinder 3 20))) ; 5mm trrs jack
     (rotate (deg2rad  90) [1 0 0])
     (rotate (deg2rad 15) [0 0 1])
    (translate [(first trrs-holder-position) (+ (/ trrs-holder-thickness -2) (second trrs-holder-position)) (+ (/ (last trrs-holder-hole-size) 2) trrs-holder-thickness)]))
@@ -734,6 +736,7 @@
                                       usb-holder-holder
                                       trrs-holder)
                                usb-holder-space
+                               usb-holder-space2
                                usb-jack
                                trrs-holder-hole
                                screw-insert-holes))
